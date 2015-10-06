@@ -1,7 +1,7 @@
 # rundeck-cd
 
 > A set of build tasks to integrate [Rundeck](http://rundeck.org/) with your
-Continuous Delivery server
+Continuous Delivery server, implemented with [Rundeck Ruby](http://blessing.io/rundeck-ruby/)
 
 ## Motivation
 
