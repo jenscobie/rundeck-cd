@@ -19,9 +19,9 @@ To run pre configured Rundeck jobs without having to learn the Rundeck API.
 
 ## Usage
 
-  Usage: ./go <command>
+    Usage: ./go <command>
 
-  Available commands are:
+    Available commands are:
       server_info             View Rundeck server meta data
       promote[development]    Run the job_id configured for the development environment
       promote[staging]        Run the job_id configured for the staging environment
