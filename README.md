@@ -22,10 +22,16 @@ To run pre configured Rundeck jobs without having to learn the Rundeck API.
     Usage: ./go <command>
 
     Available commands are:
-      server_info             View Rundeck server meta data
-      promote[development]    Run the job_id configured for the development environment
-      promote[staging]        Run the job_id configured for the staging environment
-      promote[production]     Run the job_id configured for the production environment
+      info                        View Rundeck server meta data
+      execute_job[development]    Run the job_id configured for the development environment
+      execute_job[staging]        Run the job_id configured for the staging environment
+      execute_job[production]     Run the job_id configured for the production environment
+
+## Integration Tests
+
+This project has a suite of integration tests covering the main functionality of the project.
+
+If you modify the project and want to verify your changes (and that you haven't broken anything else), run the tests with the ```./go spec``` command.
 
 ## Author
 

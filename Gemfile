@@ -2,4 +2,5 @@ source 'https://rubygems.org'
 
 gem 'psych'
 gem 'rake'
-gem 'rundeck'
+gem 'rspec'
+gem 'rundeck-ruby-client'

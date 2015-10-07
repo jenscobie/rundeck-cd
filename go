@@ -12,12 +12,17 @@ PORT=4440
 DOCKER_IMAGE=jordan/rundeck
 
 export SERVER_URL=http://$IP_ADDRESS:$PORT
-export AUTH_TOKEN='7w7AGmD1RZFMOOvViWtKJO8sTmKVDine'
+export AUTH_TOKEN='xyppBQnXf898f2Nye55SAFOiKlOqMCoP'
 
 docker pull $DOCKER_IMAGE
 
 if [[ $(docker ps) != *$DOCKER_IMAGE* ]]; then
   docker run -p $PORT:$PORT -e SERVER_URL=http://$IP_ADDRESS:$PORT -t $DOCKER_IMAGE:latest;
+fi
+
+if [[ $# -eq 0 ]]; then
+    bundle exec rake -T;
+    exit 0
 fi
 
 bundle exec rake "$@"

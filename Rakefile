@@ -1,20 +1,26 @@
-require 'rundeck'
+require 'rake'
+require 'rundeck-ruby-client'
 require 'yaml'
+require_relative 'rundeck_client'
 
-Rundeck.endpoint = ENV['SERVER_URL']
-Rundeck.api_token = ENV['AUTH_TOKEN']
+task :default => :info
 
-task :default => :server_info
-
-task :server_info do
-  puts "Server URL: " + Rundeck.endpoint
-  puts "Rundeck version: " + Rundeck.system_info.rundeck.version
-  puts "API version: " + Rundeck.system_info.rundeck.apiversion
+desc 'View Rundeck server meta data'
+task :info do
+  client = RundeckClient.new($stdout)
+  client.get_info
 end
 
-task :promote, [:environment] do |t, args|
-  yaml = YAML.load(File.open('config.yml'))
-  id = yaml[args[:environment]]['job_id']
-  puts "Running job: #{id}"
-  Rundeck.run_job(id)
+desc 'Execute the configured Rundeck job for (development|staging|production)'
+task :execute_job, [:environment] do |t, args|
+  client = RundeckClient.new($stdout)
+  client.execute_job(args[:environment])
+end
+
+begin
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec) do |t|
+    t.rspec_opts = '--format documentation'
+  end
+rescue LoadError
 end
