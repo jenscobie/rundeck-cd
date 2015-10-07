@@ -21,9 +21,9 @@ class RundeckClient
     session = Rundeck::Session.new(ENV['SERVER_URL'], ENV['AUTH_TOKEN'])
     job = Rundeck::Job.find(session, job_id)
 
-    @output.puts "Executing job: #{job_id}"
+    @output.puts "Executing job: #{job.id}"
     execution = job.execute!({'env' => environment})
     log =  execution.wait_end 2, 30
-    @output.puts "Job Completed: " + log[0]['completed']
+    @output.puts "Execution status: " + execution.status.to_s
   end
 end
